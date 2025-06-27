@@ -18,7 +18,7 @@ const Navbar = () => {
     const { cart } = useCart()
 
 
-    //const totalQuantity = cart.items.reduce((total,item)=> total+item.quantity,0)
+    
     const totalQuantity = cart?.items?.reduce((total, item) => total + item.quantity, 0) || 0;
 
 

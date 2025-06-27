@@ -17,63 +17,6 @@ const loadInitialState = () => {
     return { items: [] }
 }
 
-// const cartReducer = (state, action) => {
-//     switch (action.type) {
-//         case "ADD_ITEM": {
-//             const itemToAdd = { ...action.payload, quantity: action.payload.quantity || 1 }
-//             // const exists = state.items.find(
-//             //     (i) => i.id === itemToAdd.id && (i.source === itemToAdd.source || (!i.source && !itemToAdd.source))
-//             // )
-//             const exists = Array.isArray(state.items)
-//                 ? state.items.find(
-//                     (i) => i.id === itemToAdd.id && (i.source === itemToAdd.source || (!i.source && !itemToAdd.source))
-//                 )
-//                 : null;
-
-//             if (exists) {
-//                 return {
-//                     ...state,
-//                     items: state.items.map((i) => i.id === itemToAdd.id && (i.source === itemToAdd.source || (!i.source && !!itemToAdd.source))
-//                         ? { ...i, quantity: i.quantity + itemToAdd.quantity }
-//                         : i,
-//                     ),
-//                 }
-//             }
-//             return { ...state, items: [...state.items, itemToAdd] }
-//         }
-
-//         case "INCREMENT":
-//             return {
-//                 ...state,
-//                 items: state.items.map((i) => i.id === action.payload.id && (i.source === action.payload.source || (!i.source === !action.payload.source))
-//                     ? { ...i, quantity: i.quantity + 1 }
-//                     : i,
-
-//                 ),
-//             }
-//         case "DECREMENT":
-//             return {
-//                 ...state,
-//                 items: state.items.map((i) => i.id === action.payload.id && (i.source === action.payload.source || (!i.source === !action.payload.source))
-//                     ? { ...i, quantity: i.quantity - 1 }
-//                     : i,
-
-//                 )
-//                     .filter((i) => i.quantity > 0)
-//             }
-//         case "REMOVE_ITEM":
-//             return {
-//                 ...state,
-//                 items: state.items.filter((i) => !(i.id === action.payload.id && (i.source === action.payload.source || (!i.source === !action.payload.source))
-//                 ),
-//                 ),
-
-//             }
-//         default:
-//             return state
-
-//     }
-// }
 
 const cartReducer = (state, action) => {
     const items = Array.isArray(state.items) ? state.items : [];
@@ -145,7 +88,7 @@ const cartReducer = (state, action) => {
 
 
 export const CartProvider = ({ children }) => {
-    // const [state, dispatch] = useReducer(cartReducer, loadInitialState)
+    
     const [state, dispatch] = useReducer(cartReducer, undefined, loadInitialState)
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(state))
